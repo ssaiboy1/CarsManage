@@ -96,6 +96,11 @@ namespace CarsManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Uid,Center_no,Company_no,Car_no,Brand_no,Model,Tonnage,Total_tonnage,AllLink_tonnage,Gas_no,Buy_date,Permit_date,Make_date,Cc,Body_no,Body_model,Engine_no,Seat,Color,Carstate_no")] Cars cars)
         {
+            if (db.Cars.Any(x => x.Car_no == cars.Car_no))
+            {
+                ModelState.AddModelError("Car_no","車號重複！");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(cars).State = EntityState.Modified;

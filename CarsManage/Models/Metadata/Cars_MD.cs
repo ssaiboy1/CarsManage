@@ -27,7 +27,7 @@ namespace CarsManage.Models
             public int Brand_no { get; set; }
             [Display(Name = "型號")]
             public string Model { get; set; }
-            [Display(Name = "噸數")]
+            [Display(Name = "載重")]
             public Nullable<int> Tonnage { get; set; }
             [Display(Name = "總重量")]
             public Nullable<int> Total_tonnage { get; set; }
