@@ -1,0 +1,176 @@
+﻿@model CarsManage.Models.Cars
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Cars</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Car_no)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car_no)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tonnage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tonnage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_tonnage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_tonnage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllLink_tonnage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllLink_tonnage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Buy_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Buy_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Permit_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Permit_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Make_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Make_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body_no)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body_no)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body_model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body_model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Engine_no)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Engine_no)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cars_Brand.Brand_nm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cars_Brand.Brand_nm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cars_Company.Company_nm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cars_Company.Company_nm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cars_Gas.Gas_nm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cars_Gas.Gas_nm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cars_State.Carstate_nm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cars_State.Carstate_nm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dlv_Center.Center_nm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dlv_Center.Center_nm)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

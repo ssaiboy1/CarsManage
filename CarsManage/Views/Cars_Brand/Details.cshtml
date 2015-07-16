@@ -1,0 +1,26 @@
+﻿@model CarsManage.Models.Cars_Brand
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cars_Brand</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand_nm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand_nm)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Brand_no }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

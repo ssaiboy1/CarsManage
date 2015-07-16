@@ -1,0 +1,641 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HB_GlobalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="Uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Center_no" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="Company_no" Type="int" Nullable="false" />
+          <Property Name="Car_no" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Brand_no" Type="int" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tonnage" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Total_tonnage" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="AllLink_tonnage" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gas_no" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Buy_date" Type="datetime" />
+          <Property Name="Permit_date" Type="datetime" />
+          <Property Name="Make_date" Type="datetime" />
+          <Property Name="Cc" Type="int" />
+          <Property Name="Body_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="Body_model" Type="nvarchar" MaxLength="50" />
+          <Property Name="Engine_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="Seat" Type="int" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="Carstate_no" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cars_Brand">
+          <Key>
+            <PropertyRef Name="Brand_no" />
+          </Key>
+          <Property Name="Brand_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Brand_nm" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cars_Company">
+          <Key>
+            <PropertyRef Name="Company_no" />
+          </Key>
+          <Property Name="Company_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Company_nm" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cars_Gas">
+          <Key>
+            <PropertyRef Name="Gas_no" />
+          </Key>
+          <Property Name="Gas_no" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Gas_nm" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Cars_Insurance">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="Uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Car_Uid" Type="int" Nullable="false" />
+          <Property Name="Company_no" Type="int" Nullable="false" />
+          <Property Name="Insurance_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Card_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="Date_S" Type="datetime" />
+          <Property Name="Date_E" Type="datetime" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Cars_State">
+          <Key>
+            <PropertyRef Name="Carstate_no" />
+          </Key>
+          <Property Name="Carstate_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Carstate_nm" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Dlv_Center">
+          <Key>
+            <PropertyRef Name="Center_no" />
+          </Key>
+          <Property Name="Center_no" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="Center_nm" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Addr" Type="nvarchar" MaxLength="80" />
+          <Property Name="Tel" Type="nchar" MaxLength="20" />
+          <Property Name="Fax" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="10" />
+          <Property Name="Dsp_sw" Type="nchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Insurance">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="Uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Insurance_Uid" Type="int" Nullable="false" />
+          <Property Name="Insurance_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Insurance_nm" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Insurance_Money" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Self_Money" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Pay_Money" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Insurance_Company">
+          <Key>
+            <PropertyRef Name="Company_no" />
+          </Key>
+          <Property Name="Company_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Company_nm" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Cars_Car_brand">
+          <End Role="Cars_Brand" Type="Self.Cars_Brand" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars_Brand">
+              <PropertyRef Name="Brand_no" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="Brand_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Cars_Company">
+          <End Role="Cars_Company" Type="Self.Cars_Company" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars_Company">
+              <PropertyRef Name="Company_no" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="Company_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Cars_Gas">
+          <End Role="Cars_Gas" Type="Self.Cars_Gas" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars_Gas">
+              <PropertyRef Name="Gas_no" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="Gas_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Cars_State">
+          <End Role="Cars_State" Type="Self.Cars_State" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars_State">
+              <PropertyRef Name="Carstate_no" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="Carstate_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Dlv_Center">
+          <End Role="Dlv_Center" Type="Self.Dlv_Center" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dlv_Center">
+              <PropertyRef Name="Center_no" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="Center_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Insurance_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="1" />
+          <End Role="Cars_Insurance" Type="Self.Cars_Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="Cars_Insurance">
+              <PropertyRef Name="Car_Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Insurance_Insurance_Company">
+          <End Role="Insurance_Company" Type="Self.Insurance_Company" Multiplicity="1" />
+          <End Role="Cars_Insurance" Type="Self.Cars_Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurance_Company">
+              <PropertyRef Name="Company_no" />
+            </Principal>
+            <Dependent Role="Cars_Insurance">
+              <PropertyRef Name="Company_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Insurance_Cars_Insurance">
+          <End Role="Cars_Insurance" Type="Self.Cars_Insurance" Multiplicity="1" />
+          <End Role="Insurance" Type="Self.Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars_Insurance">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="Insurance">
+              <PropertyRef Name="Insurance_Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HB_GlobalModelStoreContainer">
+          <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cars_Brand" EntityType="Self.Cars_Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cars_Company" EntityType="Self.Cars_Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cars_Gas" EntityType="Self.Cars_Gas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cars_Insurance" EntityType="Self.Cars_Insurance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cars_State" EntityType="Self.Cars_State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dlv_Center" EntityType="Self.Dlv_Center" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Insurance" EntityType="Self.Insurance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Insurance_Company" EntityType="Self.Insurance_Company" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cars_Car_brand" Association="Self.FK_Cars_Car_brand">
+            <End Role="Cars_Brand" EntitySet="Cars_Brand" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Cars_Company" Association="Self.FK_Cars_Cars_Company">
+            <End Role="Cars_Company" EntitySet="Cars_Company" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Cars_Gas" Association="Self.FK_Cars_Cars_Gas">
+            <End Role="Cars_Gas" EntitySet="Cars_Gas" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Cars_State" Association="Self.FK_Cars_Cars_State">
+            <End Role="Cars_State" EntitySet="Cars_State" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Dlv_Center" Association="Self.FK_Cars_Dlv_Center">
+            <End Role="Dlv_Center" EntitySet="Dlv_Center" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Insurance_Cars" Association="Self.FK_Cars_Insurance_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="Cars_Insurance" EntitySet="Cars_Insurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Insurance_Insurance_Company" Association="Self.FK_Cars_Insurance_Insurance_Company">
+            <End Role="Insurance_Company" EntitySet="Insurance_Company" />
+            <End Role="Cars_Insurance" EntitySet="Cars_Insurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Insurance_Cars_Insurance" Association="Self.FK_Insurance_Cars_Insurance">
+            <End Role="Cars_Insurance" EntitySet="Cars_Insurance" />
+            <End Role="Insurance" EntitySet="Insurance" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HB_GlobalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HB_GlobalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cars_Brand" EntityType="HB_GlobalModel.Cars_Brand" />
+          <EntitySet Name="Cars_Gas" EntityType="HB_GlobalModel.Cars_Gas" />
+          <EntitySet Name="Cars_Insurance" EntityType="HB_GlobalModel.Cars_Insurance" />
+          <EntitySet Name="Cars_State" EntityType="HB_GlobalModel.Cars_State" />
+          <EntitySet Name="Dlv_Center" EntityType="HB_GlobalModel.Dlv_Center" />
+          <EntitySet Name="Insurance" EntityType="HB_GlobalModel.Insurance" />
+          <EntitySet Name="Insurance_Company" EntityType="HB_GlobalModel.Insurance_Company" />
+          <AssociationSet Name="FK_Cars_Insurance_Insurance_Company" Association="HB_GlobalModel.FK_Cars_Insurance_Insurance_Company">
+            <End Role="Insurance_Company" EntitySet="Insurance_Company" />
+            <End Role="Cars_Insurance" EntitySet="Cars_Insurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Insurance_Cars_Insurance" Association="HB_GlobalModel.FK_Insurance_Cars_Insurance">
+            <End Role="Cars_Insurance" EntitySet="Cars_Insurance" />
+            <End Role="Insurance" EntitySet="Insurance" />
+          </AssociationSet>
+          <EntitySet Name="Cars_Company" EntityType="HB_GlobalModel.Cars_Company" />
+          <EntitySet Name="Cars" EntityType="HB_GlobalModel.Cars" />
+          <AssociationSet Name="FK_Cars_Car_brand" Association="HB_GlobalModel.FK_Cars_Car_brand">
+            <End Role="Cars_Brand" EntitySet="Cars_Brand" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Cars_Company" Association="HB_GlobalModel.FK_Cars_Cars_Company">
+            <End Role="Cars_Company" EntitySet="Cars_Company" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Cars_Gas" Association="HB_GlobalModel.FK_Cars_Cars_Gas">
+            <End Role="Cars_Gas" EntitySet="Cars_Gas" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Cars_State" Association="HB_GlobalModel.FK_Cars_Cars_State">
+            <End Role="Cars_State" EntitySet="Cars_State" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Dlv_Center" Association="HB_GlobalModel.FK_Cars_Dlv_Center">
+            <End Role="Dlv_Center" EntitySet="Dlv_Center" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Insurance_Cars" Association="HB_GlobalModel.FK_Cars_Insurance_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="Cars_Insurance" EntitySet="Cars_Insurance" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cars_Brand">
+          <Key>
+            <PropertyRef Name="Brand_no" />
+          </Key>
+          <Property Name="Brand_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Brand_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="HB_GlobalModel.FK_Cars_Car_brand" FromRole="Cars_Brand" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="Cars_Gas">
+          <Key>
+            <PropertyRef Name="Gas_no" />
+          </Key>
+          <Property Name="Gas_no" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Gas_nm" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="HB_GlobalModel.FK_Cars_Cars_Gas" FromRole="Cars_Gas" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="Cars_Insurance">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="Uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Car_Uid" Type="Int32" Nullable="false" />
+          <Property Name="Company_no" Type="Int32" Nullable="false" />
+          <Property Name="Insurance_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Card_no" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Date_S" Type="DateTime" Precision="3" />
+          <Property Name="Date_E" Type="DateTime" Precision="3" />
+          <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Insurance_Company" Relationship="HB_GlobalModel.FK_Cars_Insurance_Insurance_Company" FromRole="Cars_Insurance" ToRole="Insurance_Company" />
+          <NavigationProperty Name="Insurance" Relationship="HB_GlobalModel.FK_Insurance_Cars_Insurance" FromRole="Cars_Insurance" ToRole="Insurance" />
+          <NavigationProperty Name="Cars" Relationship="HB_GlobalModel.FK_Cars_Insurance_Cars" FromRole="Cars_Insurance" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="Cars_State">
+          <Key>
+            <PropertyRef Name="Carstate_no" />
+          </Key>
+          <Property Name="Carstate_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Carstate_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="HB_GlobalModel.FK_Cars_Cars_State" FromRole="Cars_State" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="Dlv_Center">
+          <Key>
+            <PropertyRef Name="Center_no" />
+          </Key>
+          <Property Name="Center_no" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Center_nm" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Addr" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Tel" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Fax" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Dsp_sw" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="HB_GlobalModel.FK_Cars_Dlv_Center" FromRole="Dlv_Center" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="Insurance">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="Uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Insurance_Uid" Type="Int32" Nullable="false" />
+          <Property Name="Insurance_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Insurance_nm" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Insurance_Money" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Self_Money" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Pay_Money" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Remark" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars_Insurance" Relationship="HB_GlobalModel.FK_Insurance_Cars_Insurance" FromRole="Insurance" ToRole="Cars_Insurance" />
+        </EntityType>
+        <EntityType Name="Insurance_Company">
+          <Key>
+            <PropertyRef Name="Company_no" />
+          </Key>
+          <Property Name="Company_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Company_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars_Insurance" Relationship="HB_GlobalModel.FK_Cars_Insurance_Insurance_Company" FromRole="Insurance_Company" ToRole="Cars_Insurance" />
+        </EntityType>
+        <Association Name="FK_Cars_Insurance_Insurance_Company">
+          <End Type="HB_GlobalModel.Insurance_Company" Role="Insurance_Company" Multiplicity="1" />
+          <End Type="HB_GlobalModel.Cars_Insurance" Role="Cars_Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insurance_Company">
+              <PropertyRef Name="Company_no" />
+            </Principal>
+            <Dependent Role="Cars_Insurance">
+              <PropertyRef Name="Company_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Insurance_Cars_Insurance">
+          <End Type="HB_GlobalModel.Cars_Insurance" Role="Cars_Insurance" Multiplicity="1" />
+          <End Type="HB_GlobalModel.Insurance" Role="Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars_Insurance">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="Insurance">
+              <PropertyRef Name="Insurance_Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cars_Company">
+          <Key>
+            <PropertyRef Name="Company_no" />
+          </Key>
+          <Property Name="Company_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Company_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="HB_GlobalModel.FK_Cars_Cars_Company" FromRole="Cars_Company" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="Uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Center_no" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Company_no" Type="Int32" Nullable="false" />
+          <Property Name="Car_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Brand_no" Type="Int32" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tonnage" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Total_tonnage" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AllLink_tonnage" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gas_no" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Buy_date" Type="DateTime" Precision="3" />
+          <Property Name="Permit_date" Type="DateTime" Precision="3" />
+          <Property Name="Make_date" Type="DateTime" Precision="3" />
+          <Property Name="Cc" Type="Int32" />
+          <Property Name="Body_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Body_model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Engine_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Seat" Type="Int32" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Carstate_no" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cars_Brand" Relationship="HB_GlobalModel.FK_Cars_Car_brand" FromRole="Cars" ToRole="Cars_Brand" />
+          <NavigationProperty Name="Cars_Company" Relationship="HB_GlobalModel.FK_Cars_Cars_Company" FromRole="Cars" ToRole="Cars_Company" />
+          <NavigationProperty Name="Cars_Gas" Relationship="HB_GlobalModel.FK_Cars_Cars_Gas" FromRole="Cars" ToRole="Cars_Gas" />
+          <NavigationProperty Name="Cars_State" Relationship="HB_GlobalModel.FK_Cars_Cars_State" FromRole="Cars" ToRole="Cars_State" />
+          <NavigationProperty Name="Dlv_Center" Relationship="HB_GlobalModel.FK_Cars_Dlv_Center" FromRole="Cars" ToRole="Dlv_Center" />
+          <NavigationProperty Name="Cars_Insurance" Relationship="HB_GlobalModel.FK_Cars_Insurance_Cars" FromRole="Cars" ToRole="Cars_Insurance" />
+        </EntityType>
+        <Association Name="FK_Cars_Car_brand">
+          <End Type="HB_GlobalModel.Cars_Brand" Role="Cars_Brand" Multiplicity="1" />
+          <End Type="HB_GlobalModel.Cars" Role="Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars_Brand">
+              <PropertyRef Name="Brand_no" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="Brand_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Cars_Company">
+          <End Type="HB_GlobalModel.Cars_Company" Role="Cars_Company" Multiplicity="1" />
+          <End Type="HB_GlobalModel.Cars" Role="Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars_Company">
+              <PropertyRef Name="Company_no" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="Company_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Cars_Gas">
+          <End Type="HB_GlobalModel.Cars_Gas" Role="Cars_Gas" Multiplicity="1" />
+          <End Type="HB_GlobalModel.Cars" Role="Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars_Gas">
+              <PropertyRef Name="Gas_no" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="Gas_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Cars_State">
+          <End Type="HB_GlobalModel.Cars_State" Role="Cars_State" Multiplicity="1" />
+          <End Type="HB_GlobalModel.Cars" Role="Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars_State">
+              <PropertyRef Name="Carstate_no" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="Carstate_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Dlv_Center">
+          <End Type="HB_GlobalModel.Dlv_Center" Role="Dlv_Center" Multiplicity="1" />
+          <End Type="HB_GlobalModel.Cars" Role="Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dlv_Center">
+              <PropertyRef Name="Center_no" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="Center_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Insurance_Cars">
+          <End Type="HB_GlobalModel.Cars" Role="Cars" Multiplicity="1" />
+          <End Type="HB_GlobalModel.Cars_Insurance" Role="Cars_Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="Cars_Insurance">
+              <PropertyRef Name="Car_Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HB_GlobalModelStoreContainer" CdmEntityContainer="HB_GlobalEntities">
+          <EntitySetMapping Name="Cars_Brand">
+            <EntityTypeMapping TypeName="HB_GlobalModel.Cars_Brand">
+              <MappingFragment StoreEntitySet="Cars_Brand">
+                <ScalarProperty Name="Brand_nm" ColumnName="Brand_nm" />
+                <ScalarProperty Name="Brand_no" ColumnName="Brand_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars_Gas">
+            <EntityTypeMapping TypeName="HB_GlobalModel.Cars_Gas">
+              <MappingFragment StoreEntitySet="Cars_Gas">
+                <ScalarProperty Name="Gas_nm" ColumnName="Gas_nm" />
+                <ScalarProperty Name="Gas_no" ColumnName="Gas_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars_Insurance">
+            <EntityTypeMapping TypeName="HB_GlobalModel.Cars_Insurance">
+              <MappingFragment StoreEntitySet="Cars_Insurance">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Date_E" ColumnName="Date_E" />
+                <ScalarProperty Name="Date_S" ColumnName="Date_S" />
+                <ScalarProperty Name="Card_no" ColumnName="Card_no" />
+                <ScalarProperty Name="Insurance_no" ColumnName="Insurance_no" />
+                <ScalarProperty Name="Company_no" ColumnName="Company_no" />
+                <ScalarProperty Name="Car_Uid" ColumnName="Car_Uid" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars_State">
+            <EntityTypeMapping TypeName="HB_GlobalModel.Cars_State">
+              <MappingFragment StoreEntitySet="Cars_State">
+                <ScalarProperty Name="Carstate_nm" ColumnName="Carstate_nm" />
+                <ScalarProperty Name="Carstate_no" ColumnName="Carstate_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dlv_Center">
+            <EntityTypeMapping TypeName="HB_GlobalModel.Dlv_Center">
+              <MappingFragment StoreEntitySet="Dlv_Center">
+                <ScalarProperty Name="Dsp_sw" ColumnName="Dsp_sw" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Addr" ColumnName="Addr" />
+                <ScalarProperty Name="Center_nm" ColumnName="Center_nm" />
+                <ScalarProperty Name="Center_no" ColumnName="Center_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Insurance">
+            <EntityTypeMapping TypeName="HB_GlobalModel.Insurance">
+              <MappingFragment StoreEntitySet="Insurance">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Pay_Money" ColumnName="Pay_Money" />
+                <ScalarProperty Name="Self_Money" ColumnName="Self_Money" />
+                <ScalarProperty Name="Insurance_Money" ColumnName="Insurance_Money" />
+                <ScalarProperty Name="Insurance_nm" ColumnName="Insurance_nm" />
+                <ScalarProperty Name="Insurance_no" ColumnName="Insurance_no" />
+                <ScalarProperty Name="Insurance_Uid" ColumnName="Insurance_Uid" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Insurance_Company">
+            <EntityTypeMapping TypeName="HB_GlobalModel.Insurance_Company">
+              <MappingFragment StoreEntitySet="Insurance_Company">
+                <ScalarProperty Name="Company_nm" ColumnName="Company_nm" />
+                <ScalarProperty Name="Company_no" ColumnName="Company_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars_Company">
+            <EntityTypeMapping TypeName="HB_GlobalModel.Cars_Company">
+              <MappingFragment StoreEntitySet="Cars_Company">
+                <ScalarProperty Name="Company_nm" ColumnName="Company_nm" />
+                <ScalarProperty Name="Company_no" ColumnName="Company_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="HB_GlobalModel.Cars">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="Carstate_no" ColumnName="Carstate_no" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Seat" ColumnName="Seat" />
+                <ScalarProperty Name="Engine_no" ColumnName="Engine_no" />
+                <ScalarProperty Name="Body_model" ColumnName="Body_model" />
+                <ScalarProperty Name="Body_no" ColumnName="Body_no" />
+                <ScalarProperty Name="Cc" ColumnName="Cc" />
+                <ScalarProperty Name="Make_date" ColumnName="Make_date" />
+                <ScalarProperty Name="Permit_date" ColumnName="Permit_date" />
+                <ScalarProperty Name="Buy_date" ColumnName="Buy_date" />
+                <ScalarProperty Name="Gas_no" ColumnName="Gas_no" />
+                <ScalarProperty Name="AllLink_tonnage" ColumnName="AllLink_tonnage" />
+                <ScalarProperty Name="Total_tonnage" ColumnName="Total_tonnage" />
+                <ScalarProperty Name="Tonnage" ColumnName="Tonnage" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Brand_no" ColumnName="Brand_no" />
+                <ScalarProperty Name="Car_no" ColumnName="Car_no" />
+                <ScalarProperty Name="Company_no" ColumnName="Company_no" />
+                <ScalarProperty Name="Center_no" ColumnName="Center_no" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

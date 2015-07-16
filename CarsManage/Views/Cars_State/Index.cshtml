@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CarsManage.Models.Cars_State>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Carstate_nm)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Carstate_nm)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Carstate_no }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Carstate_no }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Carstate_no })
+        </td>
+    </tr>
+}
+
+</table>

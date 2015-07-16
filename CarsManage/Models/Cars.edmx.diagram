@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="26939010b47945ec935f08d1d2cd1fa4" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="HB_GlobalModel.Cars_Brand" Width="1.5" PointX="0.75" PointY="2.875" />
+        <EntityTypeShape EntityType="HB_GlobalModel.Cars_Gas" Width="1.5" PointX="0.75" PointY="11.375" />
+        <EntityTypeShape EntityType="HB_GlobalModel.Cars_Insurance" Width="1.5" PointX="5.25" PointY="2.125" />
+        <EntityTypeShape EntityType="HB_GlobalModel.Cars_State" Width="1.5" PointX="0.75" PointY="5.875" />
+        <EntityTypeShape EntityType="HB_GlobalModel.Dlv_Center" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="HB_GlobalModel.Insurance" Width="1.5" PointX="7.5" PointY="2.25" />
+        <EntityTypeShape EntityType="HB_GlobalModel.Insurance_Company" Width="1.5" PointX="3" PointY="7.875" />
+        <AssociationConnector Association="HB_GlobalModel.FK_Cars_Insurance_Insurance_Company" />
+        <AssociationConnector Association="HB_GlobalModel.FK_Insurance_Cars_Insurance" />
+        <EntityTypeShape EntityType="HB_GlobalModel.Cars_Company" Width="1.5" PointX="5.375" PointY="6.875" />
+        <EntityTypeShape EntityType="HB_GlobalModel.Cars" Width="1.5" PointX="7.625" PointY="6.125" />
+        <AssociationConnector Association="HB_GlobalModel.FK_Cars_Car_brand" />
+        <AssociationConnector Association="HB_GlobalModel.FK_Cars_Cars_Company" />
+        <AssociationConnector Association="HB_GlobalModel.FK_Cars_Cars_Gas" />
+        <AssociationConnector Association="HB_GlobalModel.FK_Cars_Cars_State" />
+        <AssociationConnector Association="HB_GlobalModel.FK_Cars_Dlv_Center" />
+        <AssociationConnector Association="HB_GlobalModel.FK_Cars_Insurance_Cars" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CarsManage.Models.Dlv_Center>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Center_nm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Addr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dsp_sw)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Center_nm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Addr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dsp_sw)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Center_no }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Center_no }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Center_no })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,74 @@
+﻿@model CarsManage.Models.Cars_Insurance
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cars_Insurance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Insurance_no)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Insurance_no)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Card_no)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Card_no)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_S)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_S)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_E)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_E)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cars.Center_no)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cars.Center_no)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Insurance_Company.Company_nm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Insurance_Company.Company_nm)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Uid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

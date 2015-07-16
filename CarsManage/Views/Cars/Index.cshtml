@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CarsManage.Models.Cars>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Dlv_Center.Center_nm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cars_Company.Company_nm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Car_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cars_Brand.Brand_nm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cars_State.Carstate_nm)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dlv_Center.Center_nm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cars_Company.Company_nm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Car_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cars_Brand.Brand_nm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cars_State.Carstate_nm)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Uid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Uid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Uid })
+        </td>
+    </tr>
+}
+
+</table>

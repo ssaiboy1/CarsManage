@@ -1,0 +1,74 @@
+﻿@model CarsManage.Models.Dlv_Center
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Dlv_Center</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Center_nm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Center_nm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Addr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Addr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dsp_sw)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dsp_sw)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Center_no }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
