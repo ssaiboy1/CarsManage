@@ -16,7 +16,7 @@ namespace CarsManage.Models
             public virtual Dlv_Center Dlv_Center { get; set; }
             public virtual Cars_Gas Cars_Gas { get; set; }
 
-            [Display(Name = "物流中心")]
+            [Display(Name = "物流中心a")]
             public string Center_no { get; set; }
             [Display(Name = "所屬公司")]
             public int Company_no { get; set; }
