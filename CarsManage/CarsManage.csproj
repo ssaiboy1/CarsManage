@@ -246,11 +246,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cars.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cars1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Cars.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Cars_Brand.cs">
       <DependentUpon>Cars.tt</DependentUpon>
     </Compile>
