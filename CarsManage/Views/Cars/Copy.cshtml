@@ -1,10 +1,10 @@
 ﻿@model CarsManage.Models.Cars
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Copy";
 }
 
-<h2>Edit</h2>
+<h2>Copy</h2>
 
 
 @using (Html.BeginForm())
@@ -18,7 +18,7 @@
         @Html.HiddenFor(model => model.Uid)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Dlv_Center.Center_nm, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Center_no, "Center_no", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Center_no", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Center_no, "", new { @class = "text-danger" })
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Cars_Company.Company_nm, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Company_no, "Company_no", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Company_no", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Company_no, "", new { @class = "text-danger" })
@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Cars_Brand.Brand_nm, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Brand_no, "Brand_no", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Brand_no", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Brand_no, "", new { @class = "text-danger" })
@@ -82,7 +82,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Cars_Gas.Gas_nm, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Gas_no, "Gas_no", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Gas_no", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Gas_no, "", new { @class = "text-danger" })
@@ -92,7 +92,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Buy_date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Buy_date, @"{0:yyyy\/MM\/dd}", new { htmlAttributes = new { @class = "form-control", data_datepicker = "" } })
+                @Html.EditorFor(model => model.Buy_date, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Buy_date, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -100,7 +100,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Permit_date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Permit_date, @"{0:yyyy\/MM\/dd}", new { htmlAttributes = new { @class = "form-control", data_datepicker = "" } })
+                @Html.EditorFor(model => model.Permit_date, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Permit_date, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -108,7 +108,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Make_date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Make_date, @"{0:yyyy\/MM\/dd}", new { htmlAttributes = new { @class = "form-control", data_datepicker = "" } })
+                @Html.EditorFor(model => model.Make_date, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Make_date, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -162,7 +162,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Cars_State.Carstate_nm, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Carstate_no, "Carstate_no", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Carstate_no", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Carstate_no, "", new { @class = "text-danger" })

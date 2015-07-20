@@ -15,9 +15,9 @@
           <Property Name="Car_no" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Brand_no" Type="int" Nullable="false" />
           <Property Name="Model" Type="nvarchar" MaxLength="50" />
-          <Property Name="Tonnage" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="Total_tonnage" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="AllLink_tonnage" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Tonnage" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Total_tonnage" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="AllLink_tonnage" Type="decimal" Precision="18" Scale="4" />
           <Property Name="Gas_no" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Buy_date" Type="datetime" />
           <Property Name="Permit_date" Type="datetime" />
@@ -408,9 +408,9 @@
           <Property Name="Car_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Brand_no" Type="Int32" Nullable="false" />
           <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Tonnage" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Total_tonnage" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="AllLink_tonnage" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Tonnage" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Total_tonnage" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="AllLink_tonnage" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="Gas_no" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Buy_date" Type="DateTime" Precision="3" />
           <Property Name="Permit_date" Type="DateTime" Precision="3" />

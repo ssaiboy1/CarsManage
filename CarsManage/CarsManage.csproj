@@ -246,6 +246,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cars.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cars1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cars.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Cars_Brand.cs">
       <DependentUpon>Cars.tt</DependentUpon>
     </Compile>
@@ -492,6 +497,7 @@
     <Content Include="Views\Cars\Details.cshtml" />
     <Content Include="Views\Cars\Edit.cshtml" />
     <Content Include="Views\Cars\Index.cshtml" />
+    <Content Include="Views\Cars\Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
