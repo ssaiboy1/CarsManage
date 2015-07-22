@@ -7,18 +7,53 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarsManage.Models;
+using PagedList;
 
 namespace CarsManage.Controllers
 {
     public class CarsController : Controller
     {
         private HB_GlobalEntities db = new HB_GlobalEntities();
+        private const int PageSize = 10;
 
-        // GET: Cars
-        public ActionResult Index()
+        //// GET: Cars
+        //public ActionResult Index()
+        //{
+        //    var cars = db.Cars.Include(c => c.Cars_Brand).Include(c => c.Cars_Company).Include(c => c.Cars_Gas).Include(c => c.Cars_State).Include(c => c.Dlv_Center);
+        //    return View(cars.ToList());
+        //}
+
+        public ActionResult Index(string car_no, string center_no, string brand_no,
+                 string gas_no, string model, string tonnage, int page = 1)
         {
-            var cars = db.Cars.Include(c => c.Cars_Brand).Include(c => c.Cars_Company).Include(c => c.Cars_Gas).Include(c => c.Cars_State).Include(c => c.Dlv_Center);
-            return View(cars.ToList());
+            ViewBag.center_no = new SelectList(db.Dlv_Center, "center_no", "center_nm");
+            ViewBag.gas_no = new SelectList(db.Cars_Gas, "gas_no", "gas_nm");
+            ViewBag.brand_no = new SelectList(db.Cars_Brand, "brand_no", "brand_nm");
+            var carsdata = from s in db.Cars select s;
+            if (!string.IsNullOrEmpty(car_no))
+            {
+                carsdata = carsdata.Where(c => c.Car_no.Contains(car_no));
+            }
+            if (!string.IsNullOrEmpty(center_no))
+            {
+                carsdata = carsdata.Where(x => x.Center_no == center_no);
+            }
+            if (!string.IsNullOrEmpty(brand_no))
+            {
+                int s_brand_no = Convert.ToInt32(brand_no);
+                carsdata = carsdata.Where(x => x.Brand_no == s_brand_no);
+            }
+            if (!string.IsNullOrEmpty(gas_no))
+            {
+                carsdata = carsdata.Where(x => x.Gas_no == gas_no);
+            }
+            if (!string.IsNullOrEmpty(model))
+            {
+                carsdata = carsdata.Where(x => x.Model == model);
+            }
+            //var result = model.OrderBy(d => d.CreateDate).ToPagedList(page, pageSize);
+            var result = carsdata.OrderBy(d => d.Uid).ToPagedList(page, PageSize);
+            return View(result);
         }
 
         // GET: Cars/Details/5
@@ -187,6 +222,39 @@ namespace CarsManage.Controllers
             ViewBag.Carstate_no = new SelectList(db.Cars_State, "Carstate_no", "Carstate_nm", cars.Carstate_no);
             ViewBag.Center_no = new SelectList(db.Dlv_Center, "Center_no", "Center_nm", cars.Center_no);
             return View(cars);
+        }
+
+        public ActionResult SreachCars(string car_no, string center_no, string brand_no,
+                         string gas_no, string model, string tonnage, int page = 1, int pageSize = 10)
+        {
+            ViewBag.center_no = new SelectList(db.Dlv_Center, "center_no", "center_nm");
+            ViewBag.gas_no = new SelectList(db.Cars_Gas, "gas_no", "gas_nm");
+            ViewBag.brand_no = new SelectList(db.Cars_Brand, "brand_no", "brand_nm");
+            var carsdata = from s in db.Cars select s;
+            if (!string.IsNullOrEmpty(car_no))
+            {
+                carsdata = carsdata.Where(c => c.Car_no.Contains(car_no));
+            }
+            if (!string.IsNullOrEmpty(center_no))
+            {
+                carsdata = carsdata.Where(x => x.Center_no == center_no);
+            }
+            if (!string.IsNullOrEmpty(brand_no))
+            {
+                int s_brand_no = Convert.ToInt32(brand_no);
+                carsdata = carsdata.Where(x => x.Brand_no == s_brand_no);
+            }
+            if (!string.IsNullOrEmpty(gas_no))
+            {
+                carsdata = carsdata.Where(x => x.Gas_no == gas_no);
+            }
+            if (!string.IsNullOrEmpty(model))
+            {
+                carsdata = carsdata.Where(x => x.Model == model);
+            }
+            //var result = model.OrderBy(d => d.CreateDate).ToPagedList(page, pageSize);
+            var result = carsdata.OrderBy(d => d.Uid).ToPagedList(page, pageSize);
+            return View(result);
         }
 
         protected override void Dispose(bool disposing)
