@@ -1,0 +1,83 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<CarsManage.Models.Cars>
+
+@{
+    ViewBag.Title = "SreachCars";
+}
+
+<h2>SreachCars</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("SreachCars", "Cars", FormMethod.Get))
+{
+    <p>
+        物流中心：@Html.DropDownList("center_no", String.Empty)
+        車號：@Html.TextBox("car_no")
+        噸數：@Html.TextBox("tonnage")
+        <br />
+        汽油種類：@Html.DropDownList("gas_no", String.Empty)
+        廠牌名稱：@Html.DropDownList("brand_no", String.Empty)
+        型號：@Html.TextBox("Model")
+        <br />
+        <input type="submit" value="搜尋" class="btn btn-default" /><br>
+        @Html.PagedListPager((IPagedList)Model, x => Url.Action("SreachCars", new { page = x }))
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Dlv_Center.Center_nm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Cars_Company.Company_nm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Car_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Cars_Brand.Brand_nm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Cc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Cars_State.Carstate_nm)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dlv_Center.Center_nm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cars_Company.Company_nm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cars_Brand.Brand_nm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cars_State.Carstate_nm)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Uid }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Uid }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Uid }) |
+                @Html.ActionLink("Copy", "Copy", new { id = item.Uid })
+            </td>
+        </tr>
+    }
+</table>
+@Html.PagedListPager((IPagedList)Model, x => Url.Action("SreachCars", new { page = x }))

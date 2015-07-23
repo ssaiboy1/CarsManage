@@ -8,27 +8,34 @@ using System.Web;
 using System.Web.Mvc;
 using CarsManage.Models;
 using PagedList;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Threading.Tasks;
+
 
 namespace CarsManage.Controllers
 {
     public class CarsController : Controller
     {
         private HB_GlobalEntities db = new HB_GlobalEntities();
-        private const int PageSize = 10;
+        private const int M_PageSize = 10;
 
-        //// GET: Cars
-        //public ActionResult Index()
-        //{
-        //    var cars = db.Cars.Include(c => c.Cars_Brand).Include(c => c.Cars_Company).Include(c => c.Cars_Gas).Include(c => c.Cars_State).Include(c => c.Dlv_Center);
-        //    return View(cars.ToList());
-        //}
-
-        public ActionResult Index(string car_no, string center_no, string brand_no,
+        public ActionResult Index(string car_no, string center_no, string company_no, string brand_no,
                  string gas_no, string model, string tonnage, int page = 1)
         {
+
             ViewBag.center_no = new SelectList(db.Dlv_Center, "center_no", "center_nm");
+            ViewBag.Select_center_no = center_no;
+            ViewBag.company_no = new SelectList(db.Cars_Company, "Company_no", "Company_nm");
+            ViewBag.Select_company_no = company_no;
             ViewBag.gas_no = new SelectList(db.Cars_Gas, "gas_no", "gas_nm");
+            ViewBag.Select_gas_no = gas_no;
             ViewBag.brand_no = new SelectList(db.Cars_Brand, "brand_no", "brand_nm");
+            ViewBag.Select_brand_no = brand_no;
+            ViewBag.car_no = car_no;
+            ViewBag.model = model;
+            ViewBag.tonnage = tonnage;
+
             var carsdata = from s in db.Cars select s;
             if (!string.IsNullOrEmpty(car_no))
             {
@@ -37,6 +44,11 @@ namespace CarsManage.Controllers
             if (!string.IsNullOrEmpty(center_no))
             {
                 carsdata = carsdata.Where(x => x.Center_no == center_no);
+            }
+            if (!string.IsNullOrEmpty(company_no))
+            {
+                int s_company_no = Convert.ToInt32(company_no);
+                carsdata = carsdata.Where(x => x.Company_no == s_company_no);
             }
             if (!string.IsNullOrEmpty(brand_no))
             {
@@ -51,9 +63,24 @@ namespace CarsManage.Controllers
             {
                 carsdata = carsdata.Where(x => x.Model == model);
             }
-            //var result = model.OrderBy(d => d.CreateDate).ToPagedList(page, pageSize);
-            var result = carsdata.OrderBy(d => d.Uid).ToPagedList(page, PageSize);
+
+            var result = carsdata.OrderBy(d => d.Uid).ToPagedList(page, M_PageSize);
             return View(result);
+        }
+
+        private List<SelectListItem> GetSelectList(
+            IEnumerable<string> source,
+            string selectedItem)
+        {
+            var selectList = source.Select(item => new SelectListItem()
+            {
+                Text = item,
+                Value = item,
+                Selected = !string.IsNullOrWhiteSpace(selectedItem)
+                           &&
+                           item.Equals(selectedItem, StringComparison.OrdinalIgnoreCase)
+            });
+            return selectList.ToList();
         }
 
         // GET: Cars/Details/5
